@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+}
+
+allprojects {
+    group 'io.github.baiyulong'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+
+    repositories {
+        maven { url snapshotRepoUrl }
+        maven { url releasesRepoUrl }
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    java {
+        version = 1.8
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+        withJavadocJar()
+        withSourcesJar()
+    }
+
+    javadoc {
+        options.encoding = 'UTF-8'
+    }
+
+}
+
+//publishing {
+//    publications {
+//        mavenJava(MavenPublication) {
+//            artifactId = 'planning'
+//            from components.java
+//        }
+//    }
+//    repositories {
+//        maven {
+//            credentials {
+//                username repoUsername
+//                password repoPassword
+//            }
+//            name = version.endsWith('SNAPSHOT') ? snapshotRepoId : releaseRepoId
+//            url = version.endsWith('SNAPSHOT') ? snapshotRepoUrl : releasesRepoUrl
+//        }
+//    }
+//}

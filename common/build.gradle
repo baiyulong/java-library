@@ -1,0 +1,28 @@
+project(":common") {
+    jar {
+        enabled = true
+    }
+
+    archivesBaseName = "common"
+    version = "1.0.1-SNAPSHOT"
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                artifactId 'common'
+                version version
+                from components.java
+            }
+        }
+        repositories {
+            maven {
+                credentials {
+                    username repoUsername
+                    password repoPassword
+                }
+                name = version.endsWith('SNAPSHOT') ? snapshotRepoId : releaseRepoId
+                url = version.endsWith('SNAPSHOT') ? snapshotRepoUrl : releasesRepoUrl
+            }
+        }
+    }
+}
