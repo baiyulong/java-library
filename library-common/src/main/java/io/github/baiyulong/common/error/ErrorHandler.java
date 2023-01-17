@@ -1,7 +1,7 @@
 package io.github.baiyulong.common.error;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Collection;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -12,13 +12,9 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @since 0.1.0
  **/
 @Getter
-@AllArgsConstructor
-public enum ErrorHandler {
-    /**
-     * Get a single instance
-     */
-    INSTANCE(new CopyOnWriteArraySet<>());
-    private final CopyOnWriteArraySet<BizError> errors;
+@NoArgsConstructor
+public final class ErrorHandler {
+    private final CopyOnWriteArraySet<BizError> errors = new CopyOnWriteArraySet<>();
 
     public void addError(BizError error) {
         this.errors.add(error);

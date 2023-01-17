@@ -6,7 +6,7 @@ plugins {
 
 allprojects {
     group 'io.github.baiyulong'
-    version '1.0-SNAPSHOT'
+    version '1.0.0-SNAPSHOT'
 
     apply plugin: 'java'
     apply plugin: 'java-library'
@@ -19,6 +19,9 @@ allprojects {
     }
 
     dependencies {
+        constraints {
+            api "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+        }
         compileOnly "org.projectlombok:lombok:${lombokVersion}"
         annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
         testCompileOnly "org.projectlombok:lombok:${lombokVersion}"

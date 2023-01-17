@@ -1,3 +1,4 @@
 rootProject.name = 'java-library'
-include 'common'
+include 'library-common'
+include 'spring-library-cqrs'
 

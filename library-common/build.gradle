@@ -1,0 +1,32 @@
+dependencies {
+    implementation 'com.fasterxml.jackson.core:jackson-annotations'
+}
+
+project(":library-common") {
+    jar {
+        enabled = true
+    }
+
+    archivesBaseName = "library-common"
+    version = "1.0.0-SNAPSHOT"
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                artifactId 'library-common'
+                version version
+                from components.java
+            }
+        }
+        repositories {
+            maven {
+                credentials {
+                    username repoUsername
+                    password repoPassword
+                }
+                name = version.endsWith('SNAPSHOT') ? snapshotRepoId : releaseRepoId
+                url = version.endsWith('SNAPSHOT') ? snapshotRepoUrl : releasesRepoUrl
+            }
+        }
+    }
+}

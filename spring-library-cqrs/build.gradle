@@ -1,15 +1,21 @@
-project(":common") {
+dependencies {
+    implementation project(":library-common")
+    implementation "org.springframework.boot:spring-boot-starter-aop:${springBootStarterAop}"
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.1'
+}
+
+project(":spring-library-cqrs") {
     jar {
         enabled = true
     }
 
-    archivesBaseName = "common"
-    version = "1.0.1-SNAPSHOT"
+    archivesBaseName = "spring-library-cqrs"
+    version = "1.0.0-SNAPSHOT"
 
     publishing {
         publications {
             maven(MavenPublication) {
-                artifactId 'common'
+                artifactId 'spring-library-cqrs'
                 version version
                 from components.java
             }
